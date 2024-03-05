@@ -1,8 +1,8 @@
 class Node {
     constructor (data, left, right) {
         this.data = data
-        this.left = left
-        this.right = right
+        this.left = null
+        this.right = null
     }
 }
 
@@ -39,7 +39,7 @@ class Tree {
         
         node.left = this.buildTree(arra, start, mid - 1);
        
-        node.right = this.buildTree(arr, mid + 1, end);
+        node.right = this.buildTree(arra, mid + 1, end);
         return node;
 
     }
