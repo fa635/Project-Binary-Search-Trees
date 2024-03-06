@@ -1,5 +1,5 @@
 class Node {
-    constructor (data, left, right) {
+    constructor (data) {
         this.data = data
         this.left = null
         this.right = null
@@ -8,6 +8,22 @@ class Node {
 
 
 class Tree {
+
+    constructor (array, n) {
+
+        let noDuplicatesArray = arr.filter(function(value, index, noDuplicatesArray) {
+            return noDuplicatesArray.indexOf(value) === index
+        })
+
+        mergeSort(noDuplicatesArray)
+
+
+        let arra = mergeSort(noDuplicatesArray)
+
+        n = noDuplicatesArray.length
+
+        this.node = this.buildTree(arra, 0, n - 1)
+    }
     
     buildTree (arra, start, end) {
 
@@ -44,21 +60,38 @@ class Tree {
 
     }
 
-    constructor (array, n) {
 
-        let noDuplicatesArray = arr.filter(function(value, index, noDuplicatesArray) {
-            return noDuplicatesArray.indexOf(value) === index
-        })
+    insert (node, data) {
 
-        mergeSort(noDuplicatesArray)
+        let current = node
 
+        while (current.data !== data) {
 
-        let arra = mergeSort(noDuplicatesArray)
+            if (current.data < data) {
 
-        n = noDuplicatesArray.length
-
-        this.node = this.buildTree(arra, 0, n - 1)
+                if (!current.data < data) {
+                    current.right = new Node(data)
+                    current = current.right
+                }
+                else {
+                    current = current.right
+                }
+            }
+            else {
+                
+                if (!current.left) {
+                    current.left = new Node(data)
+                    current = current.left
+                }
+                else {
+                    current = current.left
+                }
+            }
+        }
+        
     }
+
+    
 }
 
 
@@ -129,4 +162,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 }
 
 
-  console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
+console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
+
+console.log(tree.insert(tree.node, 2))
+
+console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
