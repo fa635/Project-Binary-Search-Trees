@@ -91,6 +91,121 @@ class Tree {
         
     }
 
+
+    deleteItem (node, data) {
+
+
+        let current = node
+
+        let prev = node
+
+        let thatNode = current
+
+        while (current.data !== data) {
+
+            if (current.data < data) {
+
+                if (!current.data < data) {
+                    prev = current
+                    current = current.right
+                }
+                else {
+                    prev = current
+                    current = current.right
+                }
+            }
+            else {
+                
+                if (!current.left) {
+                    prev = current
+                    current = current.left
+                }
+                else {
+                    prev = current
+                    current = current.left
+                }
+            }
+
+            thatNode = current
+        }
+
+
+
+        //use the delete traversal thing to find the node
+
+
+        // leaf node, no children
+        if (current.left === null && current.right === null) {
+
+            if (current === prev.right) {
+                prev.right = null
+                return node
+            }
+            else {
+                prev.left = null
+                return node
+            }
+
+            
+        }
+
+
+        // one child
+        else if (current.left !== null && current.right === null) {
+
+            if (current === prev.left) {
+                prev.left = current.left
+            }
+            else if (current === prev.right) {
+                prev.right = current.left
+            }
+        }
+        else if (current.left === null && current.right !== null) {
+
+            if (current === prev.left) {
+                prev.left = current.right
+            }
+            else if (current === prev.right) {
+                prev.right = current.right
+            }
+
+            // current = current.right
+
+            // current.right = null
+
+            // prev.left.right = null
+            return node
+        }
+
+
+        // two children
+        else if (current.left !== null && current.right !== null) {
+
+
+            if (current.right.left === null) {
+                prev.right = current.right 
+                prev.right.left = current.left
+                
+            }
+            else {
+                current = current.right
+
+                while (current.left !== null) {
+                    prev = current
+                    current = current.left
+                }
+
+                thatNode.data = current.data
+                prev.left = current.right
+            }
+
+            
+
+
+            //current = current.right
+        }
+    }
+
     
 }
 
@@ -164,6 +279,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 
-console.log(tree.insert(tree.node, 2))
+// console.log(tree.insert(tree.node, 2))
+
+console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
+
+console.log(tree.deleteItem(tree.node, 8))
 
 console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
