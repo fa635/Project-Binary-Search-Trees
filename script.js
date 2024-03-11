@@ -206,6 +206,37 @@ class Tree {
         }
     }
 
+
+    find (data) {
+
+        let current = tree.node
+
+        while (current.data !== data) {
+
+            if (current.data < data) {
+
+                if (!current.data < data) {
+                    current = current.right
+                }
+                else {
+                    current = current.right
+                }
+            }
+            else {
+                
+                if (!current.left) {
+                    current = current.left
+                }
+                else {
+                    current = current.left
+                }
+            }
+        }
+
+        return current
+
+    }
+
     
 }
 
@@ -286,3 +317,5 @@ console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 console.log(tree.deleteItem(tree.node, 8))
 
 console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
+
+console.log(tree.find(5))
