@@ -237,6 +237,87 @@ class Tree {
 
     }
 
+
+    levelOrder () {
+        
+        if(!tree.node) return []
+        const queue = []
+        const output = []
+        queue.push(tree.node)
+        while(queue.length) {
+            // Remove all the current nodes in the queue and add each node's children to the queue
+            const len = queue.length
+            const row = []
+            for(let i = 0; i < len; i++) {
+                const cur = queue.shift()
+                if(cur.left) queue.push(cur.left)
+                if(cur.right) queue.push(cur.right)
+                // Push the current node data to the row array
+                row.push(cur.data)
+            }
+            // Push the current row array into the output array
+            
+            output.push(row)
+        }
+        return output
+
+    }
+
+
+    inOrder (node) {
+
+        
+        const nodes = []
+        
+        function inOrderTraverse (node) {
+            if (node) {
+                inOrderTraverse(node.left)
+                nodes.push(node.data)
+                inOrderTraverse(node.right)
+            }
+        }
+        inOrderTraverse (node)
+        
+        return nodes
+
+    }
+
+
+    preOrder (node) {
+
+        const nodes = []
+
+        function preOrderTraverse (node) {
+            if (node) {
+                nodes.push(node.data)
+                preOrderTraverse(node.left)
+                preOrderTraverse(node.right)
+            }
+        }
+        preOrderTraverse (node)
+        
+        return nodes
+
+    }
+
+
+    postOrder (node) {
+
+        const nodes = []
+
+        function postOrderTraverse (node) {
+            if (node) {
+                postOrderTraverse(node.left)
+                postOrderTraverse(node.right)
+                nodes.push(node.data)
+            }
+        }
+        postOrderTraverse (node)
+        
+        return nodes
+
+    }
+
     
 }
 
@@ -319,3 +400,5 @@ console.log(tree.deleteItem(tree.node, 8))
 console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 
 console.log(tree.find(5))
+
+console.log(tree.postOrder(tree.node))
