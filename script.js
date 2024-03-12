@@ -393,6 +393,24 @@ class Tree {
 
     }
 
+
+    isBalanced (node) {
+
+        if (node == null) 
+            return true;
+
+        const leftHeight = tree.height(node.left);
+        const rightHeight = tree.height(node.right);
+        const heightDiff = Math.abs(leftHeight - rightHeight);
+
+        if (heightDiff > 1) {
+            return false;
+        }
+        return tree.isBalanced(node.left) && tree.isBalanced(node.right)
+        
+
+    }
+
     
 }
 
@@ -476,4 +494,4 @@ console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 
 console.log(tree.find(5))
 
-console.log(tree.depth(1))
+console.log(tree.isBalanced(tree.node))
