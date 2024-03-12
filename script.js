@@ -340,6 +340,59 @@ class Tree {
 
     }
 
+
+    depth (data) {
+
+
+        let current = tree.node
+
+        while (current.data !== data) {
+
+            if (current.data < data) {
+
+                if (!current.data < data) {
+                    current = current.right
+                }
+                else {
+                    current = current.right
+                }
+            }
+            else {
+                
+                if (!current.left) {
+                    current = current.left
+                }
+                else {
+                    current = current.left
+                }
+            }
+        }
+
+        function depthRec (node) {
+
+            if (node == null) 
+                return 0;
+            
+            else {
+                /* compute the depth of each subtree */
+                let lDepth = depthRec(node.left);
+                let rDepth = depthRec(node.right);
+    
+                /* use the larger one */
+                if (lDepth > rDepth)
+                    return (lDepth + 1);
+                else
+                    return (rDepth + 1);
+                
+            
+            }
+
+        }
+
+        return depthRec (current)
+
+    }
+
     
 }
 
@@ -423,4 +476,4 @@ console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 
 console.log(tree.find(5))
 
-console.log(tree.height(tree.node))
+console.log(tree.depth(1))
