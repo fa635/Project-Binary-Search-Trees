@@ -319,6 +319,28 @@ class Tree {
     }
 
     
+    height (node) {
+
+        if (node == null) 
+            return 0;
+          
+        else {
+            /* compute the depth of each subtree */
+            let lDepth = this.height(node.left);
+            let rDepth = this.height(node.right);
+   
+            /* use the larger one */
+            if (lDepth > rDepth)
+                return (lDepth + 1);
+            else
+                return (rDepth + 1);
+            
+        
+        }   
+
+    }
+
+    
 }
 
 
@@ -401,4 +423,4 @@ console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 
 console.log(tree.find(5))
 
-console.log(tree.postOrder(tree.node))
+console.log(tree.height(tree.node))
