@@ -11,6 +11,8 @@ class Tree {
 
     constructor (array, n) {
 
+        arr = array
+
         let noDuplicatesArray = arr.filter(function(value, index, noDuplicatesArray) {
             return noDuplicatesArray.indexOf(value) === index
         })
@@ -453,7 +455,7 @@ function merge(left, right) {
 let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
 
-const tree = new Tree
+const tree = new Tree (arr)
 
 // let array = arr.filter(function(value, index, array) {
 //     return array.indexOf(value) === index
@@ -495,3 +497,65 @@ console.log(prettyPrint(tree.node, prefix = "", isLeft = true))
 console.log(tree.find(5))
 
 console.log(tree.isBalanced(tree.node))
+
+const unbalanced = new Node(20)
+unbalanced.left = new Node(15)
+unbalanced.left.left = new Node(10)
+unbalanced.left.left = new Node(5)
+unbalanced.left.left = new Node(5)
+unbalanced.left.left.left = new Node(2)
+unbalanced.left.left.right = new Node(5)
+
+function isBalanced (node) {
+
+    if (node == null) 
+        return true;
+
+    const leftHeight = tree.height(node.left);
+    const rightHeight = tree.height(node.right);
+    const heightDiff = Math.abs(leftHeight - rightHeight);
+
+    if (heightDiff > 1) {
+        return false;
+    }
+    return tree.isBalanced(node.left) && tree.isBalanced(node.right)
+    
+
+}
+
+
+console.log(isBalanced(unbalanced))
+
+
+function rebalance (node) {
+    
+    
+    const nodes = []
+    
+    function inOrderTraverse (node) {
+        if (node) {
+            inOrderTraverse(node.left)
+            nodes.push(node.data)
+            inOrderTraverse(node.right)
+        }
+    }
+    inOrderTraverse (node)
+
+    const unbalancedBalanced = new Tree (nodes)
+
+    return "the tree has been balanced  ? " + isBalanced(unbalancedBalanced.node)
+
+    // let noDuplicatesArray = nodes.filter(function(value, index, noDuplicatesArray) {
+    //     return noDuplicatesArray.indexOf(value) === index
+    // })
+
+    // let arra = mergeSort(noDuplicatesArray)
+
+    // let n = noDuplicatesArray.length
+    
+    // tree.buildTree(arra, 0, n - 1)
+
+}
+
+console.log(rebalance(unbalanced))
+
