@@ -30,23 +30,6 @@ class Tree {
     buildTree (arra, start, end) {
 
 
-        // let noDuplicatesArray = arr.filter(function(value, index, noDuplicatesArray) {
-        //     return noDuplicatesArray.indexOf(value) === index
-        // })
-
-        // let n = noDuplicatesArray.length
-
-        // mergeSort(noDuplicatesArray)
-
-        // // let start = 0
-        // let mid
-        // if (mid === undefined) {
-        //     end = n - 1
-        // }
-        
-
-        // let arra = mergeSort(noDuplicatesArray)
-
         if (start > end)
         {
             return null;
@@ -133,8 +116,6 @@ class Tree {
 
 
 
-        //use the delete traversal thing to find the node
-
 
         // leaf node, no children
         if (current.left === null && current.right === null) {
@@ -171,11 +152,7 @@ class Tree {
                 prev.right = current.right
             }
 
-            // current = current.right
-
-            // current.right = null
-
-            // prev.left.right = null
+            
             return node
         }
 
@@ -202,9 +179,6 @@ class Tree {
             }
 
             
-
-
-            //current = current.right
         }
     }
 
@@ -457,16 +431,7 @@ let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
 const tree = new Tree (arr)
 
-// let array = arr.filter(function(value, index, array) {
-//     return array.indexOf(value) === index
-// })
 
-// console.log(array)
-
-
-// console.log(tree.buildTree(noDuplicatesArray, start, end))
-
-//root = buildTree(arr, 0, n - 1)
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
 
@@ -544,16 +509,6 @@ function rebalance (node) {
     const unbalancedBalanced = new Tree (nodes)
 
     return "the tree has been balanced  ? " + isBalanced(unbalancedBalanced.node)
-
-    // let noDuplicatesArray = nodes.filter(function(value, index, noDuplicatesArray) {
-    //     return noDuplicatesArray.indexOf(value) === index
-    // })
-
-    // let arra = mergeSort(noDuplicatesArray)
-
-    // let n = noDuplicatesArray.length
-    
-    // tree.buildTree(arra, 0, n - 1)
 
 }
 
