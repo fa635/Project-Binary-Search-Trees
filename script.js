@@ -214,12 +214,12 @@ class Tree {
     }
 
 
-    levelOrder () {
+    levelOrder (node) {
         
-        if(!tree.node) return []
+        if(!node) return []
         const queue = []
         const output = []
-        queue.push(tree.node)
+        queue.push(node)
         while(queue.length) {
             // Remove all the current nodes in the queue and add each node's children to the queue
             const len = queue.length
@@ -373,14 +373,14 @@ class Tree {
     isBalanced (node) {
 
         if (node == null) 
-            return true;
+            return "balanced : " + true;
 
         const leftHeight = tree.height(node.left);
         const rightHeight = tree.height(node.right);
         const heightDiff = Math.abs(leftHeight - rightHeight);
 
         if (heightDiff > 1) {
-            return false;
+            return "balanced : " + false;
         }
         return tree.isBalanced(node.left) && tree.isBalanced(node.right)
         
@@ -474,14 +474,14 @@ unbalanced.left.left.right = new Node(5)
 function isBalanced (node) {
 
     if (node == null) 
-        return true;
+        return "balanced : " + true;
 
     const leftHeight = tree.height(node.left);
     const rightHeight = tree.height(node.right);
     const heightDiff = Math.abs(leftHeight - rightHeight);
 
     if (heightDiff > 1) {
-        return false;
+        return "balanced : " + false;
     }
     return tree.isBalanced(node.left) && tree.isBalanced(node.right)
     
@@ -508,9 +508,70 @@ function rebalance (node) {
 
     const unbalancedBalanced = new Tree (nodes)
 
-    return "the tree has been balanced  ? " + isBalanced(unbalancedBalanced.node)
+    console.log(isBalanced(unbalancedBalanced.node))
+
+    return unbalancedBalanced
 
 }
 
 console.log(rebalance(unbalanced))
 
+
+
+
+function driverScript () {
+
+
+    let driverScriptTree = new Tree (getRandomNumbersArray())
+
+    console.log("driverScriptTree " + isBalanced(driverScriptTree.node))
+
+
+
+    console.log(driverScriptTree.levelOrder(driverScriptTree.node))
+
+    console.log(driverScriptTree.inOrder(driverScriptTree.node))
+    
+    console.log(driverScriptTree.preOrder(driverScriptTree.node))
+
+    console.log(driverScriptTree.postOrder(driverScriptTree.node))
+
+
+    driverScriptTree.insert(driverScriptTree.node, 120)
+
+
+    console.log("driverScriptTree " + isBalanced(driverScriptTree.node))
+
+    console.log("driverScriptTree " + rebalance(driverScriptTree.node))
+
+    driverScriptTree = rebalance(driverScriptTree.node)
+
+
+
+    console.log(driverScriptTree.levelOrder(driverScriptTree.node))
+
+    console.log(driverScriptTree.inOrder(driverScriptTree.node))
+    
+    console.log(driverScriptTree.preOrder(driverScriptTree.node))
+
+    console.log(driverScriptTree.postOrder(driverScriptTree.node))
+
+
+}
+
+
+
+
+function getRandomNumbersArray () {
+
+    let arrayRandom = [] 
+
+    for (let i = 0; i < 10; i++) {
+        arrayRandom.push(Math.floor(Math.random() * 99) + 1)
+    }
+
+    return arrayRandom
+}
+
+
+console.log(driverScript())
